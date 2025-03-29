@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: onlinejobportal_container
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: onlinejobportal_db
+    restart: always
+    environment:
+      POSTGRES_DB: onlinejobportal
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Sree8985
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
